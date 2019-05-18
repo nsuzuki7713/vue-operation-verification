@@ -1,4 +1,5 @@
 # vue-operation-verification
+Vue関連のライブラリを試すリポジトリにです。
 
 ## Project setup
 ```
