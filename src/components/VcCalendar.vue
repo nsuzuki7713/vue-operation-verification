@@ -50,6 +50,22 @@
       <vc-calendar :attributes='attributes4'/>
     </div>
 
+    <div>
+      <div>day-content5</div>
+      <vc-calendar :attributes='attributes5' style="width:500px;" color="red">
+        <template slot='header-title' slot-scope='page'>
+          {{page.yearLabel}}年{{page.monthLabel}}
+        </template>
+        <template slot='day-content' slot-scope='props'>
+          <div class="vc-day-content">
+            <div v-bind:style="addStyleTextColor(props.day.weekday)">{{ props.day.day }}</div>
+          </div>
+          <div v-if="props.day.day % 2 ==0" style="text-align:center;color:red"><img src="../assets/gatsby.svg"></div>
+          <div v-else style="text-align:center"><img src="../assets/slack.svg"></div>
+        </template>
+      </vc-calendar>
+    </div>
+
   </div>
 </template>
 
@@ -93,8 +109,27 @@ export default {
           },
           dates: new Date()
         }
+      ],
+      attributes5: [
+        {
+          key: "today",
+          dates: new Date()
+        }
       ]
     };
+  },
+  methods: {
+    addStyleTextColor: function(weekday) {
+      if (weekday === 1) {
+        return {
+          color: "red"
+        };
+      } else if (weekday === 7) {
+        return {
+          color: "#00c0ff"
+        };
+      }
+    }
   }
 };
 </script>
