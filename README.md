@@ -1,6 +1,9 @@
 # vue-operation-verification
 Vue関連のライブラリを試すリポジトリにです。
 
+# アウトプット
+[VueのカレンダーコンポーネントのV-Calendarを触ってみた](https://qiita.com/turmericN/items/32c04bd8145650032223)
+
 ## Project setup
 ```
 npm install
