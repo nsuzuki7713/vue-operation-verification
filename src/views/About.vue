@@ -8,14 +8,8 @@
 
 <script>
 // @ is an alias to /src
-import VcCalendar from "@/components/VcCalendar.vue";
-import MarkupBalloon from "@/components/MarkupBalloon.vue";
 
 export default {
-  name: "about",
-  components: {
-    VcCalendar,
-    MarkupBalloon
-  }
+  name: "about"
 };
 </script>
