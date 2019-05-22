@@ -1,9 +1,8 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <VcCalendar />
-    <hr>
-    <MarkupBalloon />
+    <h1>成果物</h1>
+    <p><router-link :to="{ name: 'vcCalendar'}">カレンダー</router-link></p>
+    <p><router-link :to="{ name: 'markupBalloon'}">吹き出し</router-link></p>
   </div>
 </template>
 
