@@ -8,13 +8,13 @@ Vue.config.productionTip = false
 
 const firebase = require('firebase/app');
 var firebaseConfig = {
-  apiKey: "AIzaSyAXs5BJ8GwsRC7H5WOalcAnxgtHPtedOf4",
-  authDomain: "twitter-login-a41d4.firebaseapp.com",
-  databaseURL: "https://twitter-login-a41d4.firebaseio.com",
-  projectId: "twitter-login-a41d4",
-  storageBucket: "twitter-login-a41d4.appspot.com",
-  messagingSenderId: "276368341966",
-  appId: "1:276368341966:web:fdb2d282196b5eaa"
+  apiKey: process.env.VUE_APP_API_API_KEY,
+  authDomain: process.env.VUE_APP_API_AUTH_DOMAIN,
+  databaseURL: process.env.VUE_APP_API_DATABASE_URL,
+  projectId: process.env.VUE_APP_API_PROJECT_ID,
+  storageBucket: process.env.VUE_APP_API_STORAGE_BUCKET,
+  messagingSenderId: process.env.VUE_APP_API_MESSAGING_SENDER_ID,
+  appId: process.env.VUE_APP_API_APP_ID
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -22,6 +22,7 @@ firebase.initializeApp(firebaseConfig);
 // https://stackoverflow.com/questions/43648240/firebase-auth-and-vue-router/49302592#49302592
 let app;
 firebase.auth().onAuthStateChanged(async user => {
+  console.log(user);
   if (!app) {
     // if (user) {
     //   await store.dispatch(AUTH_SUCCESS, utils.mapUser(user));
