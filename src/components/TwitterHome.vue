@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="container-fluid">
+   twitter認証
+   <div class="container-fluid">
       <div class="row">
         <div class="col-md-6">
           <h3>Sign In with Twitter</h3>
-          <button class="btn btn-primary" @click="signIn">
+          <button class="btn btn-primary" @click="logout">
             <i class="fa fa-twitter"></i>
-            SignIn with Twitter
+            ログアウト
           </button>
         </div>
       </div>
@@ -17,8 +18,9 @@
 <script>
 export default {
   methods: {
-    async signIn() {
-      await this.$store.dispatch("signIn");
+    async logout() {
+      await this.$store.dispatch("logout");
+      this.$router.push("/twitterLogin");
       console.log("bbb");
     }
   }

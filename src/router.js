@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import firebase from 'firebase/app';
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -34,7 +35,46 @@ export default new Router({
     {
       path: '/twitterLogin',
       name: 'twitterLogin',
-      component: () => import('./components/TwitterLogin.vue')
-    }
+      component: () => import('./components/TwitterLogin.vue'),
+      beforeEnter: (to, from, next) => {
+        const currentUser = firebase.auth().currentUser;
+        const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+        console.log(to)
+        console.log('currentUser');
+        console.log(currentUser);
+        console.log('requiresAuth');
+        console.log(requiresAuth);
+        if (!currentUser) {
+          console.log('cccc')
+          next();
+        } else {
+          next('/twitterHome');
+        }
+      }
+    },
+    {
+      path: '/twitterHome',
+      name: 'twitterHome',
+      component: () => import('./components/TwitterHome.vue'),
+      meta: {
+        requiresAuth: true
+      },
+      beforeEnter: (to, from, next) => {
+        const currentUser = firebase.auth().currentUser;
+        const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+        console.log(to)
+        console.log('currentUser');
+        console.log(currentUser);
+        console.log('requiresAuth');
+        console.log(requiresAuth);
+        if (!currentUser) {
+          console.log('dddd')
+          next('/twitterLogin');
+        }else{
+          next();
+        }
+      }
+    },
   ]
 })
+export default router
