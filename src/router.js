@@ -30,6 +30,11 @@ export default new Router({
       path: '/vcCalendar',
       name: 'vcCalendar',
       component: () => import('./components/VcCalendar.vue')
+    },
+    {
+      path: '/twitterLogin',
+      name: 'twitterLogin',
+      component: () => import('./components/TwitterLogin.vue')
     }
   ]
 })
