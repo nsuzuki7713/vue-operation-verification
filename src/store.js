@@ -17,7 +17,8 @@ export default new Vuex.Store({
     SET_USER (state, payload) {
       state.user = payload
     },
-    LOGOUT (state, payload) {
+    LOGOUT(state, payload) {
+      console.log(payload);
       state.user = null
     }
   },

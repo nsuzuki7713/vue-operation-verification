@@ -9,17 +9,43 @@
             SignIn with Twitter
           </button>
         </div>
+        <div>
+          <button class="btn btn-primary" @click="apiTest">
+            <i class="fa fa-twitter"></i>
+            通信テスト
+          </button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import firebase from "firebase/app";
+
 export default {
   methods: {
     async signIn() {
       await this.$store.dispatch("signIn");
       console.log("bbb");
+    },
+    async apiTest() {
+      firebase.auth().onAuthStateChanged(async user => {
+        try {
+          console.log(user);
+          if (user) {
+            const idToken = await user.getIdToken(true);
+            console.log(idToken);
+            const res = await axios
+              .post("http://127.0.0.1:8000/api/auth", { idToken })
+              .then(response => response.data);
+            console.log(res);
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      });
     }
   }
 };
