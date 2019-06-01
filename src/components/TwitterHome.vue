@@ -36,7 +36,8 @@ export default {
         try {
           if (user) {
             let idToken = await user.getIdToken(true);
-            idToken = idToken + "Adsds";
+            // エラー確認用
+            // idToken = idToken + "Adsds";
             console.log(idToken);
             const res = await axios
               .post("http://127.0.0.1:8000/api/auth", { idToken })
